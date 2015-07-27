@@ -63,134 +63,134 @@ maintainer-clean:
 	rm -f $(EXAMPLES)
 
 tcp-port-80.md: $(PFLUA)
-	../tools/dump-markdown "tcp port 80" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "tcp port 80" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 icmp-or-tcp-or-udp.md: $(PFLUA)
-	../tools/dump-markdown "icmp or tcp or udp" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "icmp or tcp or udp" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 portrange-0-6000.md: $(PFLUA)
-	../tools/dump-markdown "portrange 0-6000" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "portrange 0-6000" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 host-127.0.0.1.md: $(PFLUA)
-	../tools/dump-markdown "host 127.0.0.1" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "host 127.0.0.1" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 net-127.0.0.0-8.md: $(PFLUA)
-	../tools/dump-markdown "net 127.0.0.0/8" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "net 127.0.0.0/8" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 host-ipv6-localhost.md: $(PFLUA)
-	../tools/dump-markdown "host ::1" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "host ::1" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 net-ipv6-0-mask-16.md: $(PFLUA)
-	../tools/dump-markdown "net ::0/16" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "net ::0/16" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 net-ipv6-ee.cc.9954.0-mask-111.md: $(PFLUA)
-	../tools/dump-markdown "net ee:cc::9954:0/111" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "net ee:cc::9954:0/111" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 src-net-ffff.ffff.eeee.eeee.1.0.0.0-82.md: $(PFLUA)
-	../tools/dump-markdown "src net ffff:ffff:eeee:eeee:1:0:0:0/82" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "src net ffff:ffff:eeee:eeee:1:0:0:0/82" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 src-net-ffff.ffff.eeee.eeee.0.0.0.0-72.md: $(PFLUA)
-	../tools/dump-markdown "src net ffff:ffff:eeee:eeee:0:0:0:0/72" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "src net ffff:ffff:eeee:eeee:0:0:0:0/72" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 src-port-80.md: $(PFLUA)
-	../tools/dump-markdown "src port 80" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "src port 80" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 dst-portrange-80-90.md: $(PFLUA)
-	../tools/dump-markdown "dst portrange 80-90" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "dst portrange 80-90" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ether-multicast.md: $(PFLUA)
-	../tools/dump-markdown "ether multicast" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether multicast" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ether-broadcast.md: $(PFLUA)
-	../tools/dump-markdown "ether broadcast" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether broadcast" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ether-proto-decnet.md: $(PFLUA)
-	../tools/dump-markdown "ether proto \decnet" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether proto \decnet" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 # The frame should be treated as an Ethernet frame.
 ether-proto-1501.md: $(PFLUA)
-	../tools/dump-markdown "ether proto 1501" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether proto 1501" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 # The frame should be treated as an 802.3 frame.
 ether-proto-1500.md: $(PFLUA)
-	../tools/dump-markdown "ether proto 1500" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether proto 1500" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 # The frame should be treated as an 802.3 frame and check SAP (Service Access
 # Point) at byte 14.
 ether-proto-255.md: $(PFLUA)
-	../tools/dump-markdown "ether proto 255" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether proto 255" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 src-host-192.68.1.1-and-less-100.md: $(PFLUA)
-	../tools/dump-markdown "src host 192.68.1.1 and less 100" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "src host 192.68.1.1 and less 100" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 dst-host-192.68.1.1-and-greater-100.md: $(PFLUA)
-	../tools/dump-markdown "dst host 192.68.1.1 and greater 100" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "dst host 192.68.1.1 and greater 100" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip-multicast.md: $(PFLUA)
-	../tools/dump-markdown "ip multicast" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip multicast" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip-proto-ah.md: $(PFLUA)
-	../tools/dump-markdown "ip proto \ah" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip proto \ah" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip-proto-47.md: $(PFLUA)
-	../tools/dump-markdown "ip proto 47" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip proto 47" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip6-multicast.md: $(PFLUA)
-	../tools/dump-markdown "ip6 multicast" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip6 multicast" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip6-proto-ah.md: $(PFLUA)
-	../tools/dump-markdown "ip6 proto \ah" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip6 proto \ah" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip6-proto-47.md: $(PFLUA)
-	../tools/dump-markdown "ip6 proto 47" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip6 proto 47" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 iso-proto-clnp.md: $(PFLUA)
-	../tools/dump-markdown "iso proto \clnp" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "iso proto \clnp" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 iso-proto-47.md: $(PFLUA)
-	../tools/dump-markdown "iso proto 47" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "iso proto 47" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 ip-proto-sctp.md: $(PFLUA)
-	../tools/dump-markdown "ip proto \sctp" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ip proto \sctp" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 proto-47.md: $(PFLUA)
-	../tools/dump-markdown "proto 47" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "proto 47" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 decnet-src-10.15.md: $(PFLUA)
-	../tools/dump-markdown "decnet src 10.15" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "decnet src 10.15" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 decnet-host-10.15.md: $(PFLUA)
-	../tools/dump-markdown "decnet host 10.15" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "decnet host 10.15" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 l1.md: $(PFLUA)
-	../tools/dump-markdown "l1" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "l1" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 icmp6.md: $(PFLUA)
-	../tools/dump-markdown "icmp6" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "icmp6" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 sctp.md: $(PFLUA)
-	../tools/dump-markdown "sctp" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "sctp" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 packet-access-igmp.md: $(PFLUA)
-	../tools/dump-markdown "igmp[8] < 8" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "igmp[8] < 8" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 packet-access-pim.md: $(PFLUA)
-	../tools/dump-markdown "pim[8] < 8" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "pim[8] < 8" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 packet-access-igrp.md : $(PFLUA)
-	../tools/dump-markdown "igrp[8] < 8" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "igrp[8] < 8" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 packet-access-vrrp.md: $(PFLUA)
-	../tools/dump-markdown "vrrp[8] < 8" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "vrrp[8] < 8" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 packet-access-sctp.md: $(PFLUA)
-	../tools/dump-markdown "sctp[8] < 8" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "sctp[8] < 8" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 icmp6-or-ip.md: $(PFLUA)
-	../tools/dump-markdown "icmp6 or ip" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "icmp6 or ip" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 tcp-address.md: $(PFLUA)
-	../tools/dump-markdown "ether[&tcp[0]] = tcp[0]" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "ether[&tcp[0]] = tcp[0]" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
 
 fail-fail.md: $(PFLUA)
-	../tools/dump-markdown "tcp and tcp[100] == 1" > $@.tmp && mv $@.tmp $@
+	../tools/dump-markdown "tcp and tcp[100] == 1" > $@.tmp1 2> $@.tmp2 && cat $@.{tmp1,tmp2} > $@ && rm $@.{tmp1,tmp2}
