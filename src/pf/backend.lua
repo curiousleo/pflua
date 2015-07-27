@@ -23,7 +23,7 @@ local function invert_bool(expr)
    return { relop_inversions[expr[1]], expr[2], expr[3] }
 end
 
-local function is_simple_expr(expr)
+function is_simple_expr(expr)
    -- Simple := return true | return false | return call | goto Label
    if expr[1] == 'return' then return simple_results[expr[2][1]] end
    return expr[1] == 'goto'
@@ -36,7 +36,7 @@ end
 -- If := 'if' Bool Lua Lua?
 -- Bind := 'bind' Name Expr
 -- Label := 'label' Lua
-local function residualize_lua(program)
+function residualize_lua(program)
    -- write blocks, scope is dominator tree
    local function nest(block, result, knext)
       for _, binding in ipairs(block.bindings) do
@@ -99,7 +99,7 @@ end
 -- If := 'if' Bool Lua Lua?
 -- Bind := 'bind' Name Expr
 -- Label := 'label' Lua
-local function cleanup(expr, is_last)
+function cleanup(expr, is_last)
    local function splice_tail(result, expr)
       if expr[1] == 'do' then
          -- Splice a tail "do" into the parent do.
