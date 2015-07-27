@@ -40,7 +40,7 @@ local function print_ssa(ssa)
    return ssa
 end
 
-local function lower(expr)
+function lower(expr)
    local label_counter = 0
    local ssa = { blocks = {} }
    local function add_block()
@@ -199,7 +199,7 @@ local function simplify(ssa)
    return result
 end
 
-local function optimize_ssa(ssa)
+function optimize_ssa(ssa)
    ssa = utils.fixpoint(simplify, ssa)
    if verbose then pp(ssa) end
    return ssa
@@ -209,7 +209,7 @@ end
 -- topological sort.  The result is an array of labels, from first to
 -- last, which is set as the "order" property on the ssa.  Each
 -- block will also be given an "order" property.
-local function order_blocks(ssa)
+function order_blocks(ssa)
    local tail = nil
    local chain = {} -- label -> label | nil
    local visited = {} -- label -> bool
