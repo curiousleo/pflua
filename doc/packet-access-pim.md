@@ -71,33 +71,36 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 37
-  br i1 %2, label %L4, label %L13
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 38
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %merge5, %merge1, %merge, %merge9, %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = getelementptr inbounds i8* %0, i64 12
   %4 = bitcast i8* %3 to i16*
   %5 = load i16* %4, align 2, !tbaa !1
   %6 = icmp eq i16 %5, 8
-  br i1 %6, label %L6, label %L13
+  br i1 %6, label %merge1, label %then
 
-L6:                                               ; preds = %L4
+merge1:                                           ; preds = %merge
   %7 = getelementptr inbounds i8* %0, i64 23
   %8 = load i8* %7, align 1, !tbaa !5
   %9 = icmp eq i8 %8, 103
-  br i1 %9, label %L8, label %L13
+  br i1 %9, label %merge5, label %then
 
-L8:                                               ; preds = %L6
+merge5:                                           ; preds = %merge1
   %10 = getelementptr inbounds i8* %0, i64 20
   %11 = bitcast i8* %10 to i16*
   %12 = load i16* %11, align 2, !tbaa !1
   %13 = and i16 %12, -225
   %14 = icmp eq i16 %13, 0
-  br i1 %14, label %L10, label %L13
+  br i1 %14, label %merge9, label %then
 
-L10:                                              ; preds = %L8
+merge9:                                           ; preds = %merge5
   %15 = getelementptr inbounds i8* %0, i64 14
   %16 = load i8* %15, align 1, !tbaa !5
   %17 = zext i8 %16 to i32
@@ -105,18 +108,15 @@ L10:                                              ; preds = %L8
   %19 = and i32 %18, 60
   %20 = add nuw nsw i32 %19, 23
   %21 = icmp ugt i32 %20, %1
-  br i1 %21, label %L13, label %L12
+  br i1 %21, label %then, label %merge13
 
-L12:                                              ; preds = %L10
+merge13:                                          ; preds = %merge9
   %22 = add nuw nsw i32 %19, 22
   %23 = zext i32 %22 to i64
   %24 = getelementptr inbounds i8* %0, i64 %23
   %25 = load i8* %24, align 1, !tbaa !5
   %26 = icmp ult i8 %25, 8
   ret i1 %26
-
-L13:                                              ; preds = %L10, %L1, %L4, %L6, %L8
-  ret i1 false
 }
 
 

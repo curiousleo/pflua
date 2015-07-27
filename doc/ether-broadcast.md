@@ -49,26 +49,26 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 5
-  br i1 %2, label %L4, label %L7
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 6
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %merge, %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = bitcast i8* %0 to i16*
   %4 = load i16* %3, align 2, !tbaa !1
   %5 = icmp eq i16 %4, -1
-  br i1 %5, label %L6, label %L7
+  br i1 %5, label %merge1, label %then
 
-L6:                                               ; preds = %L4
+merge1:                                           ; preds = %merge
   %6 = getelementptr inbounds i8* %0, i64 2
   %7 = bitcast i8* %6 to i32*
   %8 = load i32* %7, align 4, !tbaa !5
   %9 = icmp eq i32 %8, -1
   ret i1 %9
-
-L7:                                               ; preds = %L1, %L4
-  ret i1 false
 }
 
 

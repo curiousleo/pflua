@@ -85,48 +85,42 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 33
-  br i1 %2, label %L4, label %L7
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 34
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %then2, %L12, %else3, %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = getelementptr inbounds i8* %0, i64 12
   %4 = bitcast i8* %3 to i16*
   %5 = load i16* %4, align 2, !tbaa !1
   %6 = icmp eq i16 %5, 8
-  br i1 %6, label %L8, label %L9
+  br i1 %6, label %then2, label %else3
 
-L8:                                               ; preds = %L4
+then2:                                            ; preds = %merge
   %7 = getelementptr inbounds i8* %0, i64 26
   %8 = bitcast i8* %7 to i32*
   %9 = load i32* %8, align 4, !tbaa !5
   %10 = icmp eq i32 %9, 16860352
-  br i1 %10, label %L6, label %L7
+  br i1 %10, label %L6, label %then
 
-L9:                                               ; preds = %L4
-  %11 = icmp ugt i32 %1, 41
-  br i1 %11, label %L10, label %L7
+else3:                                            ; preds = %merge
+  %11 = icmp ult i32 %1, 42
+  br i1 %11, label %then, label %L12
 
-L10:                                              ; preds = %L9
-  switch i16 %5, label %L7 [
-    i16 1544, label %L12
-    i16 13696, label %L12
-  ]
-
-L12:                                              ; preds = %L10, %L10
+L12:                                              ; preds = %else3
   %12 = getelementptr inbounds i8* %0, i64 28
   %13 = bitcast i8* %12 to i32*
   %14 = load i32* %13, align 4, !tbaa !5
   %15 = icmp eq i32 %14, 16860352
-  br i1 %15, label %L6, label %L7
+  br i1 %15, label %L6, label %then
 
-L6:                                               ; preds = %L12, %L8
+L6:                                               ; preds = %L12, %then2
   %16 = icmp ult i32 %1, 101
   ret i1 %16
-
-L7:                                               ; preds = %L10, %L1, %L9, %L12, %L8
-  ret i1 false
 }
 
 

@@ -43,19 +43,19 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
   %2 = icmp eq i32 %1, 0
-  br i1 %2, label %L5, label %L4
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = load i8* %0, align 1, !tbaa !1
   %4 = and i8 %3, 1
   %5 = icmp ne i8 %4, 0
   ret i1 %5
-
-L5:                                               ; preds = %L1
-  ret i1 false
 }
 
 

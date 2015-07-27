@@ -111,75 +111,75 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 20
-  br i1 %2, label %L4, label %L19
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 21
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %merge17, %merge9, %merge1, %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = getelementptr inbounds i8* %0, i64 16
   %4 = load i8* %3, align 1, !tbaa !1
   %5 = zext i8 %4 to i32
   %6 = and i32 %5, 7
   %7 = icmp eq i32 %6, 2
-  br i1 %7, label %L6, label %L7
+  br i1 %7, label %then2, label %merge1
 
-L6:                                               ; preds = %L4
+then2:                                            ; preds = %merge
   %8 = getelementptr inbounds i8* %0, i64 19
   %9 = bitcast i8* %8 to i16*
   %10 = load i16* %9, align 2, !tbaa !4
   %11 = icmp eq i16 %10, 3850
   ret i1 %11
 
-L7:                                               ; preds = %L4
-  %12 = icmp ugt i32 %1, 21
-  br i1 %12, label %L8, label %L19
+merge1:                                           ; preds = %merge
+  %12 = icmp ult i32 %1, 22
+  br i1 %12, label %then, label %merge5
 
-L8:                                               ; preds = %L7
+merge5:                                           ; preds = %merge1
   %13 = bitcast i8* %3 to i16*
   %14 = load i16* %13, align 2, !tbaa !4
   %15 = zext i16 %14 to i32
   %16 = and i32 %15, 2047
   %17 = icmp eq i32 %16, 641
-  br i1 %17, label %L10, label %L11
+  br i1 %17, label %then10, label %merge9
 
-L10:                                              ; preds = %L8
+then10:                                           ; preds = %merge5
   %18 = getelementptr inbounds i8* %0, i64 20
   %19 = bitcast i8* %18 to i16*
   %20 = load i16* %19, align 2, !tbaa !4
   %21 = icmp eq i16 %20, 3850
   ret i1 %21
 
-L11:                                              ; preds = %L8
-  %22 = icmp ugt i32 %1, 32
-  br i1 %22, label %L12, label %L19
+merge9:                                           ; preds = %merge5
+  %22 = icmp ult i32 %1, 33
+  br i1 %22, label %then, label %merge13
 
-L12:                                              ; preds = %L11
+merge13:                                          ; preds = %merge9
   %23 = icmp eq i32 %6, 6
-  br i1 %23, label %L14, label %L15
+  br i1 %23, label %then18, label %merge17
 
-L14:                                              ; preds = %L12
+then18:                                           ; preds = %merge13
   %24 = getelementptr inbounds i8* %0, i64 31
   %25 = bitcast i8* %24 to i16*
   %26 = load i16* %25, align 2, !tbaa !4
   %27 = icmp eq i16 %26, 3850
   ret i1 %27
 
-L15:                                              ; preds = %L12
+merge17:                                          ; preds = %merge13
   %28 = icmp ugt i32 %1, 33
   %29 = icmp eq i32 %16, 1665
   %or.cond = and i1 %28, %29
-  br i1 %or.cond, label %L18, label %L19
+  br i1 %or.cond, label %merge25, label %then
 
-L18:                                              ; preds = %L15
+merge25:                                          ; preds = %merge17
   %30 = getelementptr inbounds i8* %0, i64 32
   %31 = bitcast i8* %30 to i16*
   %32 = load i16* %31, align 2, !tbaa !4
   %33 = icmp eq i16 %32, 3850
   ret i1 %33
-
-L19:                                              ; preds = %L1, %L7, %L11, %L15
-  ret i1 false
 }
 
 

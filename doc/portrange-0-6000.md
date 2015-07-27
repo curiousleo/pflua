@@ -158,118 +158,89 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 33
-  br i1 %2, label %L4, label %L18
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 34
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %else3, %L8, %merge37, %L26, %merge16, %merge12, %merge8, %entry
+  %merge46 = phi i1 [ false, %merge8 ], [ false, %L8 ], [ false, %entry ], [ true, %merge12 ], [ false, %merge16 ], [ false, %else3 ], [ true, %L26 ], [ false, %merge37 ]
+  ret i1 %merge46
+
+merge:                                            ; preds = %entry
   %3 = getelementptr inbounds i8* %0, i64 12
   %4 = bitcast i8* %3 to i16*
   %5 = load i16* %4, align 2, !tbaa !1
   %6 = icmp eq i16 %5, 8
-  br i1 %6, label %L6, label %L7
+  br i1 %6, label %L8, label %else3
 
-L6:                                               ; preds = %L4
-  %7 = getelementptr inbounds i8* %0, i64 23
-  %8 = load i8* %7, align 1, !tbaa !5
-  switch i8 %8, label %L18 [
-    i8 6, label %L8
-    i8 17, label %L8
-  ]
+L8:                                               ; preds = %merge
+  %7 = getelementptr inbounds i8* %0, i64 20
+  %8 = bitcast i8* %7 to i16*
+  %9 = load i16* %8, align 2, !tbaa !1
+  %10 = and i16 %9, -225
+  %11 = icmp eq i16 %10, 0
+  br i1 %11, label %merge8, label %then
 
-L8:                                               ; preds = %L6, %L6
-  %9 = getelementptr inbounds i8* %0, i64 20
-  %10 = bitcast i8* %9 to i16*
-  %11 = load i16* %10, align 2, !tbaa !1
-  %12 = and i16 %11, -225
-  %13 = icmp eq i16 %12, 0
-  br i1 %13, label %L14, label %L18
+merge8:                                           ; preds = %L8
+  %12 = getelementptr inbounds i8* %0, i64 14
+  %13 = load i8* %12, align 1, !tbaa !5
+  %14 = zext i8 %13 to i32
+  %15 = shl nuw nsw i32 %14, 2
+  %16 = and i32 %15, 60
+  %17 = add nuw nsw i32 %16, 16
+  %18 = icmp ugt i32 %17, %1
+  br i1 %18, label %then, label %merge12
 
-L14:                                              ; preds = %L8
-  %14 = getelementptr inbounds i8* %0, i64 14
-  %15 = load i8* %14, align 1, !tbaa !5
-  %16 = zext i8 %15 to i32
-  %17 = shl nuw nsw i32 %16, 2
-  %18 = and i32 %17, 60
-  %19 = add nuw nsw i32 %18, 16
-  %20 = icmp ugt i32 %19, %1
-  br i1 %20, label %L18, label %L16
+merge12:                                          ; preds = %merge8
+  %19 = add nuw nsw i32 %16, 14
+  %20 = zext i32 %19 to i64
+  %21 = getelementptr inbounds i8* %0, i64 %20
+  %22 = bitcast i8* %21 to i16*
+  %23 = load i16* %22, align 2, !tbaa !1
+  %24 = tail call zeroext i16 @ntohs(i16 zeroext %23)
+  %25 = icmp ult i16 %24, 6001
+  br i1 %25, label %then, label %merge16
 
-L16:                                              ; preds = %L14
-  %21 = add nuw nsw i32 %18, 14
-  %22 = zext i32 %21 to i64
-  %23 = getelementptr inbounds i8* %0, i64 %22
-  %24 = bitcast i8* %23 to i16*
-  %25 = load i16* %24, align 2, !tbaa !1
-  %26 = tail call zeroext i16 @ntohs(i16 zeroext %25)
-  %27 = icmp ult i16 %26, 6001
-  br i1 %27, label %L18, label %L19
+merge16:                                          ; preds = %merge12
+  %26 = add nuw nsw i32 %16, 18
+  %27 = icmp ugt i32 %26, %1
+  br i1 %27, label %then, label %merge20
 
-L18:                                              ; preds = %L24, %L38, %L6, %L19, %L14, %L1, %L7, %L45, %L26, %L8, %L16
-  %merge = phi i1 [ true, %L16 ], [ false, %L19 ], [ false, %L14 ], [ false, %L8 ], [ true, %L26 ], [ false, %L45 ], [ false, %L7 ], [ false, %L1 ], [ false, %L6 ], [ false, %L38 ], [ false, %L24 ]
-  ret i1 %merge
+merge20:                                          ; preds = %merge16
+  %28 = zext i32 %17 to i64
+  %29 = getelementptr inbounds i8* %0, i64 %28
+  %30 = bitcast i8* %29 to i16*
+  %31 = load i16* %30, align 2, !tbaa !1
+  %32 = tail call zeroext i16 @ntohs(i16 zeroext %31)
+  %33 = icmp ult i16 %32, 6001
+  ret i1 %33
 
-L19:                                              ; preds = %L16
-  %28 = add nuw nsw i32 %18, 18
-  %29 = icmp ugt i32 %28, %1
-  br i1 %29, label %L18, label %L20
+else3:                                            ; preds = %merge
+  %34 = icmp ugt i32 %1, 55
+  %35 = icmp eq i16 %5, -8826
+  %or.cond = and i1 %34, %35
+  br i1 %or.cond, label %L26, label %then
 
-L20:                                              ; preds = %L19
-  %30 = zext i32 %19 to i64
-  %31 = getelementptr inbounds i8* %0, i64 %30
-  %32 = bitcast i8* %31 to i16*
-  %33 = load i16* %32, align 2, !tbaa !1
-  %34 = tail call zeroext i16 @ntohs(i16 zeroext %33)
-  %35 = icmp ult i16 %34, 6001
-  ret i1 %35
+L26:                                              ; preds = %else3
+  %36 = getelementptr inbounds i8* %0, i64 54
+  %37 = bitcast i8* %36 to i16*
+  %38 = load i16* %37, align 2, !tbaa !1
+  %39 = tail call zeroext i16 @ntohs(i16 zeroext %38)
+  %40 = icmp ult i16 %39, 6001
+  br i1 %40, label %then, label %merge37
 
-L7:                                               ; preds = %L4
-  %36 = icmp ugt i32 %1, 55
-  %37 = icmp eq i16 %5, -8826
-  %or.cond = and i1 %36, %37
-  br i1 %or.cond, label %L24, label %L18
+merge37:                                          ; preds = %L26
+  %41 = icmp ult i32 %1, 58
+  br i1 %41, label %then, label %merge41
 
-L24:                                              ; preds = %L7
-  %38 = getelementptr inbounds i8* %0, i64 20
-  %39 = load i8* %38, align 1, !tbaa !5
-  switch i8 %39, label %L18 [
-    i8 6, label %L26
-    i8 44, label %L32
-    i8 17, label %L26
-  ]
-
-L32:                                              ; preds = %L24
-  %40 = getelementptr inbounds i8* %0, i64 54
-  %41 = load i8* %40, align 1, !tbaa !5
-  %42 = icmp eq i8 %41, 6
-  br i1 %42, label %L26, label %L38
-
-L38:                                              ; preds = %L32
-  %43 = getelementptr inbounds i8* %0, i64 54
-  %44 = load i8* %43, align 1, !tbaa !5
-  %45 = icmp eq i8 %44, 17
-  br i1 %45, label %L26, label %L18
-
-L26:                                              ; preds = %L24, %L24, %L38, %L32
-  %46 = getelementptr inbounds i8* %0, i64 54
-  %47 = bitcast i8* %46 to i16*
-  %48 = load i16* %47, align 2, !tbaa !1
-  %49 = tail call zeroext i16 @ntohs(i16 zeroext %48)
-  %50 = icmp ult i16 %49, 6001
-  br i1 %50, label %L18, label %L45
-
-L45:                                              ; preds = %L26
-  %51 = icmp ugt i32 %1, 57
-  br i1 %51, label %L46, label %L18
-
-L46:                                              ; preds = %L45
-  %52 = getelementptr inbounds i8* %0, i64 56
-  %53 = bitcast i8* %52 to i16*
-  %54 = load i16* %53, align 2, !tbaa !1
-  %55 = tail call zeroext i16 @ntohs(i16 zeroext %54)
-  %56 = icmp ult i16 %55, 6001
-  ret i1 %56
+merge41:                                          ; preds = %merge37
+  %42 = getelementptr inbounds i8* %0, i64 56
+  %43 = bitcast i8* %42 to i16*
+  %44 = load i16* %43, align 2, !tbaa !1
+  %45 = tail call zeroext i16 @ntohs(i16 zeroext %44)
+  %46 = icmp ult i16 %45, 6001
+  ret i1 %46
 }
 
 

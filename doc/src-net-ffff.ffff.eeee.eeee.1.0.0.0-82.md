@@ -64,42 +64,42 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 53
-  br i1 %2, label %L4, label %L11
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 54
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %merge5, %merge1, %merge, %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = getelementptr inbounds i8* %0, i64 12
   %4 = bitcast i8* %3 to i16*
   %5 = load i16* %4, align 2, !tbaa !1
   %6 = icmp eq i16 %5, -8826
-  br i1 %6, label %L6, label %L11
+  br i1 %6, label %merge1, label %then
 
-L6:                                               ; preds = %L4
+merge1:                                           ; preds = %merge
   %7 = getelementptr inbounds i8* %0, i64 22
   %8 = bitcast i8* %7 to i32*
   %9 = load i32* %8, align 4, !tbaa !5
   %10 = icmp eq i32 %9, -1
-  br i1 %10, label %L8, label %L11
+  br i1 %10, label %merge5, label %then
 
-L8:                                               ; preds = %L6
+merge5:                                           ; preds = %merge1
   %11 = getelementptr inbounds i8* %0, i64 26
   %12 = bitcast i8* %11 to i32*
   %13 = load i32* %12, align 4, !tbaa !5
   %14 = icmp eq i32 %13, -286331154
-  br i1 %14, label %L10, label %L11
+  br i1 %14, label %merge9, label %then
 
-L10:                                              ; preds = %L8
+merge9:                                           ; preds = %merge5
   %15 = getelementptr inbounds i8* %0, i64 30
   %16 = bitcast i8* %15 to i32*
   %17 = load i32* %16, align 4, !tbaa !5
   %18 = and i32 %17, 12648447
   %19 = icmp eq i32 %18, 256
   ret i1 %19
-
-L11:                                              ; preds = %L1, %L4, %L6, %L8
-  ret i1 false
 }
 
 

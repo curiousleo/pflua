@@ -57,34 +57,34 @@ end
 ```
 
 ; Function Attrs: nounwind
-define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
-L1:
-  %2 = icmp ugt i32 %1, 17
-  br i1 %2, label %L4, label %L9
+define zeroext i1 @"$anon (../src/pf/terra.t:173)"(i8*, i32) #0 {
+entry:
+  %2 = icmp ult i32 %1, 18
+  br i1 %2, label %then, label %merge
 
-L4:                                               ; preds = %L1
+then:                                             ; preds = %merge1, %merge, %entry
+  ret i1 false
+
+merge:                                            ; preds = %entry
   %3 = getelementptr inbounds i8* %0, i64 12
   %4 = bitcast i8* %3 to i16*
   %5 = load i16* %4, align 2, !tbaa !1
   %6 = tail call zeroext i16 @ntohs(i16 zeroext %5)
-  %7 = icmp ult i16 %6, 1501
-  br i1 %7, label %L6, label %L9
+  %7 = icmp ugt i16 %6, 1500
+  br i1 %7, label %then, label %merge1
 
-L6:                                               ; preds = %L4
+merge1:                                           ; preds = %merge
   %8 = getelementptr inbounds i8* %0, i64 14
   %9 = bitcast i8* %8 to i16*
   %10 = load i16* %9, align 2, !tbaa !1
   %11 = icmp eq i16 %10, -258
-  br i1 %11, label %L8, label %L9
+  br i1 %11, label %merge5, label %then
 
-L8:                                               ; preds = %L6
+merge5:                                           ; preds = %merge1
   %12 = getelementptr inbounds i8* %0, i64 17
   %13 = load i8* %12, align 1, !tbaa !5
   %14 = icmp eq i8 %13, 47
   ret i1 %14
-
-L9:                                               ; preds = %L1, %L4, %L6
-  ret i1 false
 }
 
 
