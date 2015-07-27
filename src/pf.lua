@@ -11,6 +11,7 @@ local anf = require('pf.anf')
 local ssa = require('pf.ssa')
 local backend = require('pf.backend')
 local utils = require('pf.utils')
+local terra = require('pf.terra')
 
 -- TODO: rename the 'libpcap' option to reduce terminology overload
 local compile_defaults = {
@@ -37,9 +38,13 @@ function compile_filter(filter_str, opts)
       expr = expand.expand(expr, dlt)
       if opts.optimize then expr = optimize.optimize(expr) end
       expr = anf.convert_anf(expr)
-      expr = ssa.convert_ssa(expr)
-      if opts.source then return backend.emit_lua(expr) end
-      return backend.emit_and_load(expr, filter_str)
+      -- expr = ssa.convert_ssa(expr)
+      -- if opts.source then return backend.emit_lua(expr) end
+      -- return backend.emit_and_load(expr, filter_str)
+      expr = ssa.optimize_ssa(ssa.lower(expr))
+      ssa.order_blocks(expr)
+      -- require('pl.pretty').dump(expr)
+      return terra.generate_filter(expr)
    end
 end
 
