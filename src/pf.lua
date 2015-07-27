@@ -15,7 +15,7 @@ local terra = require('pf.terra')
 
 -- TODO: rename the 'libpcap' option to reduce terminology overload
 local compile_defaults = {
-   optimize=true, libpcap=false, bpf=false, source=false
+   optimize=true, libpcap=false, bpf=false, source=false, pfterra=false
 }
 function compile_filter(filter_str, opts)
    local opts = utils.parse_opts(opts or {}, compile_defaults)
@@ -33,7 +33,7 @@ function compile_filter(filter_str, opts)
       local bytecode = libpcap.compile(filter_str, dlt, opts.optimize)
       if opts.source then return bpf.compile_lua(bytecode) end
       return bpf.compile(bytecode)
-   elseif opts.terra then
+   elseif opts.pfterra then
       local expr = parse.parse(filter_str)
       expr = expand.expand(expr, dlt)
       if opts.optimize then expr = optimize.optimize(expr) end

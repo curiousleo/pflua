@@ -21,6 +21,8 @@ out("## BPF\n\n```\n%s```\n\n",
     compile({libpcap=true, source=true}))
 out("## BPF cross-compiled to Lua\n\n```\n%s\n```\n\n",
     compile({bpf=true, source=true}))
-io.output(io.stderr):write "## Direct pflang compilation\n\n```\n"
-compile({source=true}):disas()
+out("## Direct pflang compilation\n\n```\n%s\n```\n\n",
+    compile({source=true}))
+io.output(io.stderr):write "## Direct pflang compilation with terra\n\n```\n"
+compile({pfterra=true}):disas()
 io.output(io.stderr):write "\n```\n"
