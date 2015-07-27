@@ -33,18 +33,22 @@ function compile_filter(filter_str, opts)
       local bytecode = libpcap.compile(filter_str, dlt, opts.optimize)
       if opts.source then return bpf.compile_lua(bytecode) end
       return bpf.compile(bytecode)
+   elseif opts.terra then
+      local expr = parse.parse(filter_str)
+      expr = expand.expand(expr, dlt)
+      if opts.optimize then expr = optimize.optimize(expr) end
+      expr = anf.convert_anf(expr)
+      expr = ssa.optimize_ssa(ssa.lower(expr))
+      ssa.order_blocks(expr)
+      return terra.generate_filter(expr)
    else -- pflua
       local expr = parse.parse(filter_str)
       expr = expand.expand(expr, dlt)
       if opts.optimize then expr = optimize.optimize(expr) end
       expr = anf.convert_anf(expr)
-      -- expr = ssa.convert_ssa(expr)
-      -- if opts.source then return backend.emit_lua(expr) end
-      -- return backend.emit_and_load(expr, filter_str)
-      expr = ssa.optimize_ssa(ssa.lower(expr))
-      ssa.order_blocks(expr)
-      -- require('pl.pretty').dump(expr)
-      return terra.generate_filter(expr)
+      expr = ssa.convert_ssa(expr)
+      if opts.source then return backend.emit_lua(expr) end
+      return backend.emit_and_load(expr, filter_str)
    end
 end
 
