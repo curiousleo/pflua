@@ -38,8 +38,7 @@ function compile_filter(filter_str, opts)
       expr = expand.expand(expr, dlt)
       if opts.optimize then expr = optimize.optimize(expr) end
       expr = anf.convert_anf(expr)
-      expr = ssa.optimize_ssa(ssa.lower(expr))
-      ssa.order_blocks(expr)
+      expr = ssa.convert_ssa(expr)
       return terra.generate_filter(expr)
    else -- pflua
       local expr = parse.parse(filter_str)
