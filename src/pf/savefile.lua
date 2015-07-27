@@ -36,7 +36,7 @@ function size(fd)
 end
 
 function open_and_mmap(filename)
-   local fd = open(filename, O_RDONLY)
+   local fd = open(filename, 0) -- open(filename, O_RDONLY)
    if fd == -1 then
       error("Error opening " .. filename)
    end
