@@ -2,6 +2,7 @@
 -- -*- lua -*-
 module(..., package.seeall)
 package.path = package.path .. ";../?.lua;../../src/?.lua"
+package.terrapath = package.terrapath .. '../src/?.t'
 local pf = require("pf")
 local savefile = require("pf.savefile")
 local utils = require('pf.utils')

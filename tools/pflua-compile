@@ -1,7 +1,8 @@
-#!/usr/bin/env luajit
+#!/opt/terra/terra
 -- -*- lua -*-
 
 package.path = package.path .. ";../src/?.lua"
+package.terrapath = package.terrapath .. ";../src/?.t"
 
 local pf = require("pf")
 local bpf = require("pf.bpf")

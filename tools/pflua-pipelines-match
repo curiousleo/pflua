@@ -1,4 +1,4 @@
-#!/usr/bin/env luajit
+#!/opt/terra/terra
 -- Do a 3-way compare between the pure-lua, bpf-lua and pure-libpcap pipelines,
 -- given pflang, indicating whether or not all three match.
 -- Input: pflang by default, or pflua IR if --ir is specified.

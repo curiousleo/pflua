@@ -1,8 +1,15 @@
-#!/usr/bin/env luajit
+#!/opt/terra/terra
 -- -*- lua -*-
 package.path = package.path .. ";../src/?.lua"
 
 local quickcheck = require('pf.quickcheck')
+
+prop_name = nil
+handle_prop_args = nil
+print_extra_information = nil
+prop_info = nil
+seed = nil
+filters = nil
 
 function main(...)
    local args = { ... }

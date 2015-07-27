@@ -1,7 +1,8 @@
-#!/usr/bin/env luajit
+#!/opt/terra/terra
 -- -*- lua -*-
 module(..., package.seeall)
 package.path = package.path .. ";../?.lua;../../src/?.lua"
+package.terrapath = package.terrapath .. '../src/?.t'
 -- Compare the results of the libpcap/bpf and pure-lua pflua pipelines.
 
 local pf = require("pf")

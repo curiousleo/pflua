@@ -4,8 +4,6 @@ local utils = require('pf.utils')
 
 local program_name = 'pflua-quickcheck'
 
-local seed, iterations, prop_name, prop_args, prop, prop_info
-
 -- Due to limitations of Lua 5.1, finding if a command failed is convoluted.
 local function find_gitrev()
    local fd = io.popen('git rev-parse HEAD 2>/dev/null ; echo -n "$?"')
@@ -31,6 +29,8 @@ local function rerun_usage(i)
          format(program_name, seed, i + 1,
                 prop_name, table.concat(prop_args, " ")))
 end
+
+local seed, iterations, prop_name, prop_args
 
 function initialize(options)
    seed, iterations, prop_name, prop_args =

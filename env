@@ -16,6 +16,8 @@ thisdir=$(cd $(dirname $0) && pwd)
 
 prepend LUA_PATH ';' "${thisdir}/tests/?.lua"
 prepend LUA_PATH ';' "${thisdir}/src/?.lua"
+prepend TERRA_PATH ';' "${thisdir}/tests/?.t"
+prepend TERRA_PATH ';' "${thisdir}/src/?.t"
 prepend PATH ':' "${thisdir}/tools"
 
 exec "$@"
