@@ -111,3 +111,115 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  %2 = icmp ugt i32 %1, 33
+  br i1 %2, label %L4, label %L14
+
+L4:                                               ; preds = %L1
+  %3 = getelementptr inbounds i8* %0, i64 12
+  %4 = bitcast i8* %3 to i16*
+  %5 = load i16* %4, align 2, !tbaa !1
+  %6 = icmp eq i16 %5, 8
+  br i1 %6, label %L6, label %L7
+
+L6:                                               ; preds = %L4
+  %7 = getelementptr inbounds i8* %0, i64 23
+  %8 = load i8* %7, align 1, !tbaa !5
+  %9 = icmp eq i8 %8, 6
+  br i1 %9, label %L8, label %L14
+
+L8:                                               ; preds = %L6
+  %10 = getelementptr inbounds i8* %0, i64 20
+  %11 = bitcast i8* %10 to i16*
+  %12 = load i16* %11, align 2, !tbaa !1
+  %13 = and i16 %12, -225
+  %14 = icmp eq i16 %13, 0
+  br i1 %14, label %L10, label %L14
+
+L10:                                              ; preds = %L8
+  %15 = getelementptr inbounds i8* %0, i64 14
+  %16 = load i8* %15, align 1, !tbaa !5
+  %17 = zext i8 %16 to i32
+  %18 = shl nuw nsw i32 %17, 2
+  %19 = and i32 %18, 60
+  %20 = add nuw nsw i32 %19, 16
+  %21 = icmp ugt i32 %20, %1
+  br i1 %21, label %L14, label %L12
+
+L12:                                              ; preds = %L10
+  %22 = add nuw nsw i32 %19, 14
+  %23 = zext i32 %22 to i64
+  %24 = getelementptr inbounds i8* %0, i64 %23
+  %25 = bitcast i8* %24 to i16*
+  %26 = load i16* %25, align 2, !tbaa !1
+  %27 = icmp eq i16 %26, 20480
+  br i1 %27, label %L14, label %L15
+
+L14:                                              ; preds = %L20, %L15, %L10, %L1, %L7, %L26, %L29, %L22, %L6, %L8, %L12
+  %merge = phi i1 [ true, %L12 ], [ false, %L15 ], [ false, %L10 ], [ false, %L8 ], [ false, %L6 ], [ true, %L22 ], [ false, %L29 ], [ false, %L26 ], [ false, %L7 ], [ false, %L1 ], [ false, %L20 ]
+  ret i1 %merge
+
+L15:                                              ; preds = %L12
+  %28 = add nuw nsw i32 %19, 18
+  %29 = icmp ugt i32 %28, %1
+  br i1 %29, label %L14, label %L16
+
+L16:                                              ; preds = %L15
+  %30 = zext i32 %20 to i64
+  %31 = getelementptr inbounds i8* %0, i64 %30
+  %32 = bitcast i8* %31 to i16*
+  %33 = load i16* %32, align 2, !tbaa !1
+  %34 = icmp eq i16 %33, 20480
+  ret i1 %34
+
+L7:                                               ; preds = %L4
+  %35 = icmp ugt i32 %1, 55
+  %36 = icmp eq i16 %5, -8826
+  %or.cond = and i1 %35, %36
+  br i1 %or.cond, label %L20, label %L14
+
+L20:                                              ; preds = %L7
+  %37 = getelementptr inbounds i8* %0, i64 20
+  %38 = load i8* %37, align 1, !tbaa !5
+  switch i8 %38, label %L14 [
+    i8 6, label %L20.L22_crit_edge
+    i8 44, label %L26
+  ]
+
+L20.L22_crit_edge:                                ; preds = %L20
+  %.pre = getelementptr inbounds i8* %0, i64 54
+  br label %L22
+
+L26:                                              ; preds = %L20
+  %39 = getelementptr inbounds i8* %0, i64 54
+  %40 = load i8* %39, align 1, !tbaa !5
+  %41 = icmp eq i8 %40, 6
+  br i1 %41, label %L22, label %L14
+
+L22:                                              ; preds = %L20.L22_crit_edge, %L26
+  %.pre-phi = phi i8* [ %.pre, %L20.L22_crit_edge ], [ %39, %L26 ]
+  %42 = bitcast i8* %.pre-phi to i16*
+  %43 = load i16* %42, align 2, !tbaa !1
+  %44 = icmp eq i16 %43, 20480
+  br i1 %44, label %L14, label %L29
+
+L29:                                              ; preds = %L22
+  %45 = icmp ugt i32 %1, 57
+  br i1 %45, label %L30, label %L14
+
+L30:                                              ; preds = %L29
+  %46 = getelementptr inbounds i8* %0, i64 56
+  %47 = bitcast i8* %46 to i16*
+  %48 = load i16* %47, align 2, !tbaa !1
+  %49 = icmp eq i16 %48, 20480
+  ret i1 %49
+}
+
+
+```

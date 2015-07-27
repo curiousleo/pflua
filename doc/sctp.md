@@ -70,3 +70,15 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  ret i1 false
+}
+
+
+```

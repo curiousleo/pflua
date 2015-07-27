@@ -153,3 +153,124 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  %2 = icmp ugt i32 %1, 33
+  br i1 %2, label %L4, label %L18
+
+L4:                                               ; preds = %L1
+  %3 = getelementptr inbounds i8* %0, i64 12
+  %4 = bitcast i8* %3 to i16*
+  %5 = load i16* %4, align 2, !tbaa !1
+  %6 = icmp eq i16 %5, 8
+  br i1 %6, label %L6, label %L7
+
+L6:                                               ; preds = %L4
+  %7 = getelementptr inbounds i8* %0, i64 23
+  %8 = load i8* %7, align 1, !tbaa !5
+  switch i8 %8, label %L18 [
+    i8 6, label %L8
+    i8 17, label %L8
+  ]
+
+L8:                                               ; preds = %L6, %L6
+  %9 = getelementptr inbounds i8* %0, i64 20
+  %10 = bitcast i8* %9 to i16*
+  %11 = load i16* %10, align 2, !tbaa !1
+  %12 = and i16 %11, -225
+  %13 = icmp eq i16 %12, 0
+  br i1 %13, label %L14, label %L18
+
+L14:                                              ; preds = %L8
+  %14 = getelementptr inbounds i8* %0, i64 14
+  %15 = load i8* %14, align 1, !tbaa !5
+  %16 = zext i8 %15 to i32
+  %17 = shl nuw nsw i32 %16, 2
+  %18 = and i32 %17, 60
+  %19 = add nuw nsw i32 %18, 16
+  %20 = icmp ugt i32 %19, %1
+  br i1 %20, label %L18, label %L16
+
+L16:                                              ; preds = %L14
+  %21 = add nuw nsw i32 %18, 14
+  %22 = zext i32 %21 to i64
+  %23 = getelementptr inbounds i8* %0, i64 %22
+  %24 = bitcast i8* %23 to i16*
+  %25 = load i16* %24, align 2, !tbaa !1
+  %26 = tail call zeroext i16 @ntohs(i16 zeroext %25)
+  %27 = icmp ult i16 %26, 6001
+  br i1 %27, label %L18, label %L19
+
+L18:                                              ; preds = %L24, %L38, %L6, %L19, %L14, %L1, %L7, %L45, %L26, %L8, %L16
+  %merge = phi i1 [ true, %L16 ], [ false, %L19 ], [ false, %L14 ], [ false, %L8 ], [ true, %L26 ], [ false, %L45 ], [ false, %L7 ], [ false, %L1 ], [ false, %L6 ], [ false, %L38 ], [ false, %L24 ]
+  ret i1 %merge
+
+L19:                                              ; preds = %L16
+  %28 = add nuw nsw i32 %18, 18
+  %29 = icmp ugt i32 %28, %1
+  br i1 %29, label %L18, label %L20
+
+L20:                                              ; preds = %L19
+  %30 = zext i32 %19 to i64
+  %31 = getelementptr inbounds i8* %0, i64 %30
+  %32 = bitcast i8* %31 to i16*
+  %33 = load i16* %32, align 2, !tbaa !1
+  %34 = tail call zeroext i16 @ntohs(i16 zeroext %33)
+  %35 = icmp ult i16 %34, 6001
+  ret i1 %35
+
+L7:                                               ; preds = %L4
+  %36 = icmp ugt i32 %1, 55
+  %37 = icmp eq i16 %5, -8826
+  %or.cond = and i1 %36, %37
+  br i1 %or.cond, label %L24, label %L18
+
+L24:                                              ; preds = %L7
+  %38 = getelementptr inbounds i8* %0, i64 20
+  %39 = load i8* %38, align 1, !tbaa !5
+  switch i8 %39, label %L18 [
+    i8 6, label %L26
+    i8 44, label %L32
+    i8 17, label %L26
+  ]
+
+L32:                                              ; preds = %L24
+  %40 = getelementptr inbounds i8* %0, i64 54
+  %41 = load i8* %40, align 1, !tbaa !5
+  %42 = icmp eq i8 %41, 6
+  br i1 %42, label %L26, label %L38
+
+L38:                                              ; preds = %L32
+  %43 = getelementptr inbounds i8* %0, i64 54
+  %44 = load i8* %43, align 1, !tbaa !5
+  %45 = icmp eq i8 %44, 17
+  br i1 %45, label %L26, label %L18
+
+L26:                                              ; preds = %L24, %L24, %L38, %L32
+  %46 = getelementptr inbounds i8* %0, i64 54
+  %47 = bitcast i8* %46 to i16*
+  %48 = load i16* %47, align 2, !tbaa !1
+  %49 = tail call zeroext i16 @ntohs(i16 zeroext %48)
+  %50 = icmp ult i16 %49, 6001
+  br i1 %50, label %L18, label %L45
+
+L45:                                              ; preds = %L26
+  %51 = icmp ugt i32 %1, 57
+  br i1 %51, label %L46, label %L18
+
+L46:                                              ; preds = %L45
+  %52 = getelementptr inbounds i8* %0, i64 56
+  %53 = bitcast i8* %52 to i16*
+  %54 = load i16* %53, align 2, !tbaa !1
+  %55 = tail call zeroext i16 @ntohs(i16 zeroext %54)
+  %56 = icmp ult i16 %55, 6001
+  ret i1 %56
+}
+
+
+```

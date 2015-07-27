@@ -165,3 +165,110 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  %2 = icmp ugt i32 %1, 20
+  br i1 %2, label %L4, label %L8
+
+L4:                                               ; preds = %L1
+  %3 = getelementptr inbounds i8* %0, i64 16
+  %4 = load i8* %3, align 1, !tbaa !1
+  %5 = zext i8 %4 to i32
+  %6 = and i32 %5, 7
+  %7 = icmp eq i32 %6, 2
+  br i1 %7, label %L6, label %L7
+
+L6:                                               ; preds = %L4
+  %8 = getelementptr inbounds i8* %0, i64 19
+  %9 = bitcast i8* %8 to i16*
+  %10 = load i16* %9, align 2, !tbaa !4
+  %11 = icmp eq i16 %10, 3850
+  br i1 %11, label %L8, label %L9
+
+L8:                                               ; preds = %L1, %L7, %L13, %L19, %L24, %L18, %L12, %L6
+  %merge = phi i1 [ true, %L24 ], [ true, %L18 ], [ true, %L12 ], [ true, %L6 ], [ false, %L19 ], [ false, %L13 ], [ false, %L7 ], [ false, %L1 ]
+  ret i1 %merge
+
+L9:                                               ; preds = %L6
+  %12 = getelementptr inbounds i8* %0, i64 17
+  %13 = bitcast i8* %12 to i16*
+  %14 = load i16* %13, align 2, !tbaa !4
+  %15 = icmp eq i16 %14, 3850
+  ret i1 %15
+
+L7:                                               ; preds = %L4
+  %16 = icmp ugt i32 %1, 21
+  br i1 %16, label %L10, label %L8
+
+L10:                                              ; preds = %L7
+  %17 = bitcast i8* %3 to i16*
+  %18 = load i16* %17, align 2, !tbaa !4
+  %19 = zext i16 %18 to i32
+  %20 = and i32 %19, 2047
+  %21 = icmp eq i32 %20, 641
+  br i1 %21, label %L12, label %L13
+
+L12:                                              ; preds = %L10
+  %22 = getelementptr inbounds i8* %0, i64 20
+  %23 = bitcast i8* %22 to i16*
+  %24 = load i16* %23, align 2, !tbaa !4
+  %25 = icmp eq i16 %24, 3850
+  br i1 %25, label %L8, label %L15
+
+L15:                                              ; preds = %L12
+  %26 = getelementptr inbounds i8* %0, i64 18
+  %27 = bitcast i8* %26 to i16*
+  %28 = load i16* %27, align 2, !tbaa !4
+  %29 = icmp eq i16 %28, 3850
+  ret i1 %29
+
+L13:                                              ; preds = %L10
+  %30 = icmp ugt i32 %1, 32
+  br i1 %30, label %L16, label %L8
+
+L16:                                              ; preds = %L13
+  %31 = icmp eq i32 %6, 6
+  br i1 %31, label %L18, label %L19
+
+L18:                                              ; preds = %L16
+  %32 = getelementptr inbounds i8* %0, i64 31
+  %33 = bitcast i8* %32 to i16*
+  %34 = load i16* %33, align 2, !tbaa !4
+  %35 = icmp eq i16 %34, 3850
+  br i1 %35, label %L8, label %L21
+
+L21:                                              ; preds = %L18
+  %36 = getelementptr inbounds i8* %0, i64 23
+  %37 = bitcast i8* %36 to i16*
+  %38 = load i16* %37, align 2, !tbaa !4
+  %39 = icmp eq i16 %38, 3850
+  ret i1 %39
+
+L19:                                              ; preds = %L16
+  %40 = icmp ugt i32 %1, 33
+  %41 = icmp eq i32 %20, 1665
+  %or.cond = and i1 %40, %41
+  br i1 %or.cond, label %L24, label %L8
+
+L24:                                              ; preds = %L19
+  %42 = getelementptr inbounds i8* %0, i64 32
+  %43 = bitcast i8* %42 to i16*
+  %44 = load i16* %43, align 2, !tbaa !4
+  %45 = icmp eq i16 %44, 3850
+  br i1 %45, label %L8, label %L27
+
+L27:                                              ; preds = %L24
+  %46 = getelementptr inbounds i8* %0, i64 24
+  %47 = bitcast i8* %46 to i16*
+  %48 = load i16* %47, align 2, !tbaa !4
+  %49 = icmp eq i16 %48, 3850
+  ret i1 %49
+}
+
+
+```

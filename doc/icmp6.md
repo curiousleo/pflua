@@ -56,3 +56,45 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  %2 = icmp ugt i32 %1, 53
+  br i1 %2, label %L4, label %L8
+
+L4:                                               ; preds = %L1
+  %3 = getelementptr inbounds i8* %0, i64 12
+  %4 = bitcast i8* %3 to i16*
+  %5 = load i16* %4, align 2, !tbaa !1
+  %6 = icmp eq i16 %5, -8826
+  br i1 %6, label %L6, label %L8
+
+L6:                                               ; preds = %L4
+  %7 = getelementptr inbounds i8* %0, i64 20
+  %8 = load i8* %7, align 1, !tbaa !5
+  %9 = icmp eq i8 %8, 58
+  br i1 %9, label %L8, label %L9
+
+L8:                                               ; preds = %L1, %L4, %L9, %L6
+  %merge = phi i1 [ true, %L6 ], [ false, %L9 ], [ false, %L4 ], [ false, %L1 ]
+  ret i1 %merge
+
+L9:                                               ; preds = %L6
+  %10 = icmp ugt i32 %1, 54
+  %11 = icmp eq i8 %8, 44
+  %or.cond = and i1 %10, %11
+  br i1 %or.cond, label %L12, label %L8
+
+L12:                                              ; preds = %L9
+  %12 = getelementptr inbounds i8* %0, i64 54
+  %13 = load i8* %12, align 1, !tbaa !5
+  %14 = icmp eq i8 %13, 58
+  ret i1 %14
+}
+
+
+```

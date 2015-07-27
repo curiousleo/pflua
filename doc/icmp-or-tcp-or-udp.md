@@ -95,3 +95,87 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  %2 = icmp ugt i32 %1, 33
+  br i1 %2, label %L4, label %L10
+
+L4:                                               ; preds = %L1
+  %3 = getelementptr inbounds i8* %0, i64 12
+  %4 = bitcast i8* %3 to i16*
+  %5 = load i16* %4, align 2, !tbaa !1
+  %6 = icmp eq i16 %5, 8
+  br i1 %6, label %L6, label %L7
+
+L6:                                               ; preds = %L4
+  %7 = getelementptr inbounds i8* %0, i64 23
+  %8 = load i8* %7, align 1, !tbaa !5
+  switch i8 %8, label %L9 [
+    i8 1, label %L10
+    i8 6, label %L10
+  ]
+
+L10:                                              ; preds = %L17, %L6, %L6, %L1, %L7, %L30, %L19, %L24, %L14
+  %merge = phi i1 [ %23, %L17 ], [ true, %L30 ], [ true, %L19 ], [ true, %L24 ], [ true, %L14 ], [ true, %L6 ], [ false, %L7 ], [ false, %L1 ], [ true, %L6 ]
+  ret i1 %merge
+
+L9:                                               ; preds = %L6
+  %9 = icmp eq i8 %8, 17
+  ret i1 %9
+
+L7:                                               ; preds = %L4
+  %10 = icmp ugt i32 %1, 53
+  %11 = icmp eq i16 %5, -8826
+  %or.cond = and i1 %10, %11
+  br i1 %or.cond, label %L14, label %L10
+
+L14:                                              ; preds = %L7
+  %12 = getelementptr inbounds i8* %0, i64 20
+  %13 = load i8* %12, align 1, !tbaa !5
+  %14 = icmp eq i8 %13, 1
+  br i1 %14, label %L10, label %L21
+
+L21:                                              ; preds = %L14
+  %15 = icmp ugt i32 %1, 54
+  %16 = icmp eq i8 %13, 44
+  %or.cond96 = and i1 %15, %16
+  br i1 %or.cond96, label %L24, label %L19
+
+L24:                                              ; preds = %L21
+  %17 = getelementptr inbounds i8* %0, i64 54
+  %18 = load i8* %17, align 1, !tbaa !5
+  %19 = icmp eq i8 %18, 1
+  br i1 %19, label %L10, label %L30
+
+L19:                                              ; preds = %L21
+  %.old = icmp eq i8 %13, 6
+  br i1 %.old, label %L10, label %L17
+
+L30:                                              ; preds = %L24
+  %20 = getelementptr inbounds i8* %0, i64 54
+  %21 = load i8* %20, align 1, !tbaa !5
+  %22 = icmp eq i8 %21, 6
+  br i1 %22, label %L10, label %L17
+
+L17:                                              ; preds = %L19, %L30
+  %23 = icmp eq i8 %13, 17
+  %.not = xor i1 %15, true
+  %brmerge = or i1 %23, %.not
+  %.not101 = xor i1 %16, true
+  %brmerge102 = or i1 %brmerge, %.not101
+  br i1 %brmerge102, label %L10, label %L36
+
+L36:                                              ; preds = %L17
+  %24 = getelementptr inbounds i8* %0, i64 54
+  %25 = load i8* %24, align 1, !tbaa !5
+  %26 = icmp eq i8 %25, 17
+  ret i1 %26
+}
+
+
+```

@@ -66,3 +66,52 @@ end
 
 ```
 
+## Direct pflang compilation with terra
+
+```
+
+; Function Attrs: nounwind
+define zeroext i1 @"$anon (../src/pf/terra.t:128)"(i8*, i32) #0 {
+L1:
+  %2 = icmp ugt i32 %1, 13
+  br i1 %2, label %L4, label %L12
+
+L4:                                               ; preds = %L1
+  %3 = icmp ugt i32 %1, 53
+  %4 = getelementptr inbounds i8* %0, i64 12
+  %5 = bitcast i8* %4 to i16*
+  %6 = load i16* %5, align 2, !tbaa !1
+  %7 = icmp eq i16 %6, -8826
+  %or.cond37 = and i1 %3, %7
+  br i1 %or.cond37, label %L10, label %L7
+
+L10:                                              ; preds = %L4
+  %8 = getelementptr inbounds i8* %0, i64 20
+  %9 = load i8* %8, align 1, !tbaa !5
+  %10 = icmp eq i8 %9, 58
+  br i1 %10, label %L12, label %L13
+
+L12:                                              ; preds = %L1, %L16, %L10
+  %merge = phi i1 [ true, %L16 ], [ true, %L10 ], [ false, %L1 ]
+  ret i1 %merge
+
+L13:                                              ; preds = %L10
+  %11 = icmp ugt i32 %1, 54
+  %12 = icmp eq i8 %9, 44
+  %or.cond = and i1 %11, %12
+  br i1 %or.cond, label %L16, label %L7
+
+L16:                                              ; preds = %L13
+  %13 = getelementptr inbounds i8* %0, i64 54
+  %14 = load i8* %13, align 1, !tbaa !5
+  %15 = icmp eq i8 %14, 58
+  br i1 %15, label %L12, label %L7
+
+L7:                                               ; preds = %L4, %L16, %L13
+  %16 = phi i16 [ -8826, %L16 ], [ -8826, %L13 ], [ %6, %L4 ]
+  %17 = icmp eq i16 %16, 8
+  ret i1 %17
+}
+
+
+```
