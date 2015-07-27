@@ -1,8 +1,6 @@
 module(...,package.seeall)
 
-local utils = require('pf.utils')
-local ffi = require 'ffi'
-local pp = utils.pp
+local backend = require('pf.backend')
 
 local relop_map = {
    ['<']='<', ['<=']='<=', ['=']='==', ['!=']='~=', ['>=']='>=', ['>']='>'
@@ -15,10 +13,8 @@ local function read_buffer_word_by_type(P, offset, size)
       return P[offset]
    elseif size == 2 then
       return terralib.cast(&uint16, P+offset)[0]
-      -- return builder.c('ffi.cast')..'("uint16_t*", '..buffer..'+'..offset..')[0]'
    elseif size == 4 then
       return terralib.cast(&uint32, P+offset)[0]
-      -- return (builder.c('ffi.cast')..'("uint32_t*", '..buffer..'+'..offset..')[0]')
    else
       error("bad [] size: "..size)
    end
